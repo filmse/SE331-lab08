@@ -1,8 +1,10 @@
 package camt.se331.shoppingcart.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Dto on 2/7/2015.
@@ -15,6 +17,10 @@ public class Product implements Comparable{
     String name;
     String description;
     Double totalPrice;
+
+    @OneToMany(fetch= FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    Set<Image> images = new HashSet<>();
 
 
     public Long getId() {
@@ -96,4 +102,15 @@ public class Product implements Comparable{
 
         return (int) (this.getId() - ((Product)o).getId());
     }
+
+    public Set<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
+    }
+
+
+
 }

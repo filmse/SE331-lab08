@@ -20,13 +20,13 @@ productMainController.controller('addProductController', ['$scope', '$http', '$l
                 $scope.$apply();
 
                 //$http.post("/product", $scope.product).success(function () {
-                productService.save($scope.product, function () {
+
                     $rootScope.addSuccess = true;
                     $location.path("listProduct");
 
                 });
 
-            });
+
         }
 
     }]);
